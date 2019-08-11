@@ -11,6 +11,7 @@
 <script>
 import Header from './components/pages/elements/Header'
 import Footer from './components/pages/elements/Footer'
+
 export default {
   name: 'app',
   data () {
@@ -44,6 +45,20 @@ export default {
     .page-container {
         min-height: 100%;
         padding-bottom: 80px;
+    }
+
+    /* typography */
+    h1 {
+
+    }
+    h2 {
+      font-size: 26px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    h4 {
+      font-size: 18px;
     }
 
 </style>
