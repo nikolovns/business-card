@@ -18,7 +18,44 @@
             <div class="tab-content">
                 <template v-if="showSelectedTab('Details')">
                     <div id="details">
-                        <p>details</p>
+                        <app-details>
+                            <h1 slot="details-title">User Details</h1>
+                            <div slot="personal-data" class="col-sm-12 col-md-6 columns">
+                                <h2>Double click to change your data</h2>
+                                <p>Personal Data</p>
+                                
+                                <div>
+                                    <label for="">User name</label>
+                                    <input type="text" v-model="userData[0].name" />
+                                </div>
+
+                                <div>
+                                    <label for="">E-mail</label>
+                                    <input type="text" v-model="userData[0].email" />
+                                </div>
+
+                                <div>
+                                    <label for="">Web page</label>
+                                    <input type="text" v-model="userData[0].web" />
+                                </div>
+                            </div>
+                            <div slot="delivery-data" class="col-sm-12 col-md-6 columns">
+                                <h2>Fill the data if you want to order some of your products</h2>
+                                <p>Delivery address</p>
+                                <div>
+                                    <label for="">Phone number</label>
+                                    <input type="text" v-model="userData[0].phone" />
+                                </div>
+
+                                <div>
+                                    <label for="">Delivery address</label>
+                                    <input type="text" v-model="userData[0].address" />
+                                </div>
+                            </div>
+                            <div slot="submit-details" class="col-md-12 columns">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                            </div>
+                        </app-details>
                     </div>
                 </template>
 
@@ -29,9 +66,17 @@
                 </template>
 
                 <template v-if="showSelectedTab('Orders')">
-                    <div id="orders">
-                        <p>Orders</p>
-                    </div>
+                    <app-orders>
+                        <h2 slot="orders-title">Orders</h2>
+                        <div slot="orders" class="col-sm-12 col-md-6 columns" v-for="order in userOrders" :key="order.id">
+                            <p><span>Order number: </span>{{order.id}}</p>
+                            <p><span>Product name: </span>{{order.productName}}</p>
+                            <p><span>Your name: </span>{{order.userName}}</p>
+                            <p><span>Phone number: </span>{{order.phone}}</p>
+                            <p><span>Delivery address: </span>{{order.address}}</p>
+                            <p><span>Order quantity: </span>{{order.quantity}}</p>
+                        </div>
+                    </app-orders>
                 </template>
                 
             </div>
@@ -43,7 +88,8 @@
 <script>
 // import UserLogin from './UserLogin'
 // import UserRegister from './UserRegister'
-// import UserDetails from './UserDetails'
+import UserDetails from './UserDetails'
+import Orders from '../../commerce/Orders'
 // import UserProducts from './UserProducts'
 
 export default {
@@ -123,6 +169,10 @@ export default {
         showSelectedTab(category) {
             return this.selectedCategory == category;
         }
+    },
+    components: {
+        'app-details': UserDetails,
+        'app-orders': Orders
     }
 }
 </script>
