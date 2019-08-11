@@ -61,7 +61,19 @@
 
                 <template v-if="showSelectedTab('Products')">
                     <div id="products">
-                        <p>Products</p>
+                        <app-products>
+                            <div slot="user-products" class="business col-md-12 columns">
+                                <h2>Business Cards</h2>
+                                <div v-for="product in userProducts" :key="product.id">
+                                    <!-- <div v-if="product.type == 1"> -->
+                                        <p>{{product.image}}</p>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div slot="submit-order" class="col-md-12 columns">
+                                <input class="btn btn-primary" type="submit" value="Make Order">
+                            </div>
+                        </app-products>
                     </div>
                 </template>
 
@@ -90,7 +102,7 @@
 // import UserRegister from './UserRegister'
 import UserDetails from './UserDetails'
 import Orders from '../../commerce/Orders'
-// import UserProducts from './UserProducts'
+import UserProducts from './UserProducts'
 
 export default {
     data() {
@@ -172,6 +184,7 @@ export default {
     },
     components: {
         'app-details': UserDetails,
+        'app-products': UserProducts,
         'app-orders': Orders
     }
 }
