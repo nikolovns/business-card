@@ -12,15 +12,9 @@
 
 <script>
 export default {
-    // props: {
-    //     userProducts: {
-    //         type: Array,
-    //         require: true
-    //     }
-    // },
     methods: {
         makeOrder() {
-            this.$router.push('/shopping-card');
+            this.$router.push('/1/shopping-cart');
         }
     }
 }
