@@ -8,7 +8,10 @@ import 'jquery/src/jquery.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
 Vue.use(VueRouter)
-// Vue.use(Bootstrap)
+
+Vue.filter('upper-case', function(value) {
+  return value.toUpperCase()
+})
 
 const router = new VueRouter({
   routes,

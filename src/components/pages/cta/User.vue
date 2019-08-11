@@ -11,7 +11,7 @@
                     :key="index"
                     @click="selectedCategory = category"
                     >
-                    <a :class="{ 'active': selectedCategory == category }" class="nav-link">{{ category }}</a>
+                    <a :class="{ 'active': selectedCategory == category }" class="nav-link">{{ category | upper-case }}</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -76,21 +76,35 @@
                     </div>
                 </template>
 
-                <template v-if="showSelectedTab('Cart')">
+                <template v-if="showSelectedTab('Shopping Cart')">
                     <div id="cart">
                         <app-shopping-cart>
-                            <h2>Cart</h2>
-                            <!-- <div slot="cart" class="business col-md-12 columns">
-                                <h2>Business Cards</h2>
-                                <div v-for="product in userProducts" :key="product.id">
-                                    <!-- <div v-if="product.type == 1"> -->
-                                        <!-- <p>{{product.image}}</p> -->
-                                    <!-- </div> -->
-                                <!-- </div>
-                            </div> -->
-                            <!-- <div slot="submit-order" class="col-md-12 columns">
-                                <input class="btn btn-primary" type="submit" value="Make Order">
-                            </div> -->
+                            <div slot="cart-title" class="page-title col-md-12">
+                                <h2>Your Shopping Cart</h2>
+                            </div>
+                            <table slot="cart-data" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Product Image</td>
+                                        <td>Product Name</td>
+                                        <td>
+                                            <label for="quantity">Quantity</label>
+                                            <input type="text" id="quantity">
+                                        </td>
+                                        <td>
+                                            <input type="button" value="remove">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </app-shopping-cart>
                     </div>
                 </template>
@@ -118,7 +132,7 @@
 <script>
 // import UserLogin from './UserLogin'
 // import UserRegister from './UserRegister'
-import ShoppingCart from '../../commerce/ShoppingCard'
+import ShoppingCart from '../../commerce/ShoppingCart'
 import UserDetails from './UserDetails'
 import Orders from '../../commerce/Orders'
 import UserProducts from './UserProducts'
@@ -127,7 +141,7 @@ export default {
     data() {
         return {
             selectedCategory: 'Details',
-            categories: ['Details', 'Products', 'Orders', 'Cart'],
+            categories: ['Details', 'Products', 'Shopping Cart', 'Orders'],
             userData: [
                 {'name': 'John Doe', 'email': 'john@mail.com', 'web': 'the-best.com', 'phone': '8888 888 888', 'address': "John's city" },
             ],
@@ -210,4 +224,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.nav-item {
+    font-size: 14px;
+}
+</style>
 
